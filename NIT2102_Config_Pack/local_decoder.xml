@@ -1,0 +1,4 @@
+<!-- NIT2102 - Custom decoder for Snort 3 fast-alert messages. -->
+<decoder name="snort3_healthcare">
+  <prematch>HEALTHCARE LAB</prematch>
+</decoder>

@@ -1,0 +1,14 @@
+<!-- Wazuh manager: bind Rule 100200 to the custom containment script. -->
+<command>
+  <name>ransomware-containment</name>
+  <executable>ransomware_response.py</executable>
+  <timeout_allowed>yes</timeout_allowed>
+</command>
+
+<active-response>
+  <disabled>no</disabled>
+  <command>ransomware-containment</command>
+  <location>local</location>
+  <rules_id>100200</rules_id>
+  <timeout>600</timeout>
+</active-response>

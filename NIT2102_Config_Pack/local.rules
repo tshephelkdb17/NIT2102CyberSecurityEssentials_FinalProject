@@ -1,0 +1,19 @@
+# NIT2102 - Snort 3 local rules
+# Protected host: 192.168.64.11
+
+# Basic ICMP visibility rule used in the controlled lab.
+alert icmp any any -> 192.168.64.11 any (
+    msg:"HEALTHCARE LAB - ICMP Traffic to Protected Server";
+    sid:1000001;
+    rev:1;
+)
+
+# Tuned TCP SYN-scan rule. The detection_filter reduces alert noise by
+# requiring a burst of SYN packets from the same source before alerting.
+alert tcp any any -> 192.168.64.11 any (
+    msg:"HEALTHCARE LAB - Possible TCP SYN Scan to Protected Server";
+    flags:S;
+    detection_filter:track by_src,count 20,seconds 10;
+    sid:1000002;
+    rev:2;
+)

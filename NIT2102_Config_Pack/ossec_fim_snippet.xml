@@ -1,0 +1,4 @@
+<!-- Add inside the endpoint's <syscheck> section. -->
+<syscheck>
+  <directories realtime="yes" report_changes="yes">/home/kali/Healthcare_Data</directories>
+</syscheck>

@@ -1,0 +1,23 @@
+<!-- NIT2102 - Wazuh custom rules. -->
+<group name="snort3,healthcare,ids,">
+  <rule id="100100" level="8">
+    <decoded_as>snort3_healthcare</decoded_as>
+    <description>Healthcare IDS: Snort detected suspicious network traffic to protected server</description>
+    <mitre>
+      <id>T1046</id>
+    </mitre>
+    <group>network_attack,ids,healthcare,reconnaissance,</group>
+  </rule>
+</group>
+
+<group name="ransomware,healthcare,fim,">
+  <rule id="100200" level="12">
+    <if_sid>550</if_sid>
+    <field name="syscheck.path">\.locked$</field>
+    <description>Healthcare Ransomware Alert: Suspicious modification of locked patient file</description>
+    <mitre>
+      <id>T1486</id>
+    </mitre>
+    <group>ransomware,healthcare,file_integrity,</group>
+  </rule>
+</group>

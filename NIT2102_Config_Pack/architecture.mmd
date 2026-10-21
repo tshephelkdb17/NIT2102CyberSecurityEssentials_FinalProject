@@ -1,0 +1,27 @@
+flowchart LR
+    K["Kali Linux<br/>192.168.64.10<br/><b>Attack Simulation</b><br/>Nmap / controlled traffic"]
+
+    subgraph V["Metasploitable - 192.168.64.11"]
+      T["Protected / Vulnerable Services"]
+      S["Snort 3 IDS"]
+      F["Wazuh FIM<br/>Monitored healthcare data"]
+      A["Wazuh Agent"]
+      R["Ransomware Response Script"]
+      T --> S
+      F --> A
+      S --> A
+      A --> R
+    end
+
+    W["Wazuh Server<br/>192.168.64.14<br/><b>SIEM / Manager / Dashboard</b><br/>Rule 100100 - Level 8<br/>Rule 100200 - Level 12 / T1486"]
+
+    K -- "Attack Flow: Nmap / ICMP / TCP SYN" --> T
+    A -- "Detection & Log Flow: Snort + FIM events" --> W
+    W -. "Active Response Flow: Rule 100200" .-> A
+
+    classDef attacker fill:#e8f1ff,stroke:#2563eb,color:#0f172a,stroke-width:2px;
+    classDef victim fill:#fff2ee,stroke:#ea580c,color:#0f172a,stroke-width:2px;
+    classDef defensive fill:#ecfdf5,stroke:#059669,color:#0f172a,stroke-width:2px;
+    class K attacker;
+    class T,S,F,A,R victim;
+    class W defensive;
